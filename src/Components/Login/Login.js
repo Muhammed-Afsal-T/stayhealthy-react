@@ -1,43 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  const [errors, setErrors] = useState({});
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    
-    if (!formData.password) newErrors.password = 'Password is required';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log('Login submitted:', formData);
-      // Add backend connectivity here later
+  useEffect(() => {
+    if (sessionStorage.getItem("auth-token")) {
+      navigate("/");
     }
-  };
+  }, []);
 
-  const handleReset = () => {
-    setFormData({ email: '', password: '' });
-    setErrors({});
+  const login = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const json = await res.json();
+      
+      if (json.authtoken) {
+        sessionStorage.setItem('auth-token', json.authtoken);
+        sessionStorage.setItem('email', email);
+        navigate('/');
+        window.location.reload();
+      } else {
+        if (json.errors) {
+          for (const error of json.errors) {
+            alert(error.msg);
+          }
+        } else {
+          alert(json.error);
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Network error - please try again');
+    }
   };
 
   return (
@@ -47,40 +58,53 @@ const Login = () => {
           <h2>Login</h2>
         </div>
         <div className="login-text">
-          Are you a new member? <span><a href="/signup" style={{color: '#2190FF'}}> Sign Up Here</a></span>
+          Are you a new member? 
+          <span>
+            <Link to="/signup" style={{ color: '#2190FF' }}>
+              Sign Up Here
+            </Link>
+          </span>
         </div>
         <br />
         <div className="login-form">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={login}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
                 type="email" 
                 name="email" 
                 id="email" 
                 className="form-control" 
                 placeholder="Enter your email" 
-                value={formData.email}
-                onChange={handleChange}
+                aria-describedby="helpId" 
+                required
               />
-              {errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
             </div>
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 id="password"
                 className="form-control"
                 placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
+                aria-describedby="helpId"
+                required
               />
-              {errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
             </div>
+
             <div className="btn-group">
-              <button type="submit" className="btn btn-primary mb-2 mr-1">Login</button> 
-              <button type="button" onClick={handleReset} className="btn btn-danger mb-2">Reset</button>
+              <button type="submit" className="btn btn-primary mb-2 mr-1">
+                Login
+              </button>
+              <button type="reset" className="btn btn-danger mb-2">
+                Reset
+              </button>
             </div>
             <br />
             <div className="login-text">
@@ -90,7 +114,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Login;
