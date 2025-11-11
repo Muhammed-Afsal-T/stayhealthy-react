@@ -1,0 +1,147 @@
+.appointment-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.appointment-form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 420px;
+    /* No max-height, no scrolling - all content visible */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.appointment-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.appointment-form-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.doctor-info {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.doctor-info h4 {
+    margin: 0 0 3px 0;
+    color: #2190FF;
+    font-size: 1.1em;
+}
+
+.doctor-info p {
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 0.85em;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 0.85em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2190FF;
+}
+
+.form-group input.error,
+.form-group select.error {
+    border-color: #dc3545;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 0.75em;
+    margin-top: 3px;
+}
+
+.form-actions {
+    margin-top: 8px;
+}
+
+.book-now-btn {
+    background: linear-gradient(45deg, #2190FF, #1976d2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.book-now-btn:hover {
+    background: linear-gradient(45deg, #1976d2, #1565c0);
+    transform: translateY(-1px);
+}
+
+.book-now-btn:active {
+    transform: translateY(0);
+}
