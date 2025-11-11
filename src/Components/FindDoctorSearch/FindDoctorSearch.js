@@ -1,60 +1,106 @@
 import React, { useState } from 'react';
 import './FindDoctorSearch.css';
 
-const FindDoctorSearch = () => {
-  const [searchText, setSearchText] = useState('');
-  const [specialities, setSpecialities] = useState([
-    'Dentist', 'Gynecologist', 'General Physician', 'Dermatologist', 
-    'Pediatrician', 'Neurologist', 'Orthopedic', 'Cardiologist'
-  ]);
-  const [showSpecialities, setShowSpecialities] = useState(false);
+const FindDoctorSearch = ({ onSearch }) => {
+    const [searchText, setSearchText] = useState('');
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
-  };
+    const specialties = [
+        'Cardiologist',
+        'Neurologist', 
+        'Pediatrician',
+        'Dermatologist',
+        'Gynecologist',
+        'Orthopedic',
+        'Psychiatrist',
+        'General Physician'
+    ];
 
-  const handleSpecialityClick = (speciality) => {
-    setSearchText(speciality);
-    setShowSpecialities(false);
-  };
+    const doctorNames = [
+        'Dr. Sarah Johnson',
+        'Dr. Michael Chen',
+        'Dr. Priya Sharma',
+        'Dr. Robert Wilson',
+        'Dr. Lisa Anderson',
+        'Dr. David Brown',
+        'Dr. Maria Garcia',
+        'Dr. James Miller'
+    ];
 
-  const handleFocus = () => {
-    setShowSpecialities(true);
-  };
+    // Combine both specialties and doctor names for suggestions
+    const allSuggestions = [...specialties, ...doctorNames];
 
-  const handleBlur = () => {
-    setTimeout(() => setShowSpecialities(false), 200);
-  };
+    const handleSearchChange = (e) => {
+        const text = e.target.value;
+        setSearchText(text);
+        setShowSuggestions(text.length > 0);
+    };
 
-  return (
-    <div className="find-doctor-search">
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search for doctors, specialties..."
-          value={searchText}
-          onChange={handleSearch}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        
-        {showSpecialities && (
-          <div className="specialities-dropdown">
-            {specialities.map((speciality, index) => (
-              <div
-                key={index}
-                className="speciality-item"
-                onClick={() => handleSpecialityClick(speciality)}
-              >
-                {speciality}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    const handleSuggestionClick = (suggestion) => {
+        setSearchText(suggestion);
+        setShowSuggestions(false);
+        if (onSearch) {
+            onSearch(suggestion);
+        }
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (onSearch && searchText.trim()) {
+            onSearch(searchText);
+        }
+        setShowSuggestions(false);
+    };
+
+    const handleInputFocus = () => {
+        if (searchText.length > 0) {
+            setShowSuggestions(true);
+        }
+    };
+
+    const handleInputBlur = () => {
+        setTimeout(() => setShowSuggestions(false), 200);
+    };
+
+    const filteredSuggestions = allSuggestions.filter(item =>
+        item.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    return (
+        <div className="find-doctor-search">
+            <form onSubmit={handleSearchSubmit} className="search-form">
+                <div className="search-input-container">
+                    <input
+                        type="text"
+                        className="search-input"
+                        placeholder="Search by doctor name or specialty..."
+                        value={searchText}
+                        onChange={handleSearchChange}
+                        onFocus={handleInputFocus}
+                        onBlur={handleInputBlur}
+                    />
+                    <button type="submit" className="search-icon-button">
+                        🔍
+                    </button>
+                </div>
+                
+                {/* Suggestions dropdown */}
+                {showSuggestions && filteredSuggestions.length > 0 && (
+                    <div className="suggestions-dropdown">
+                        {filteredSuggestions.map((suggestion, index) => (
+                            <div
+                                key={index}
+                                className="suggestion-option"
+                                onClick={() => handleSuggestionClick(suggestion)}
+                            >
+                                {suggestion}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </form>
+        </div>
+    );
 };
 
 export default FindDoctorSearch;

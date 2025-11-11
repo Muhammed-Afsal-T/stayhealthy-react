@@ -8,6 +8,7 @@ import './App.css';
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import DoctorCard from './Components/DoctorCard/DoctorCard';
+import BookingConsultation from './Components/BookingConsultation/BookingConsultation'; // Add this import
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/signup" element={<Sign_Up/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/instant-consultation" element={<InstantConsultation/>}/>
+          <Route path="/booking-consultation" element={<BookingConsultation/>}/> {/* Add this route */}
+          
           {/* Test route for FindDoctorSearch component */}
           <Route path="/test-search" element={<FindDoctorSearch/>}/>
           {/* Test route for DoctorCard component */}

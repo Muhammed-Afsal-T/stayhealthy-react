@@ -1,0 +1,108 @@
+.booking-consultation-container {
+    max-width: 1200px;
+    margin: 80px auto 40px auto;
+    color: #414146;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.search-section {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-results-container {
+    margin-top: 30px;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.results-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d2d32;
+    margin-bottom: 10px;
+}
+
+.results-header h3 {
+    font-size: 16px;
+    color: #787887;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.default-view h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d2d32;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.default-view h3 {
+    font-size: 16px;
+    color: #787887;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.doctors-grid,
+.all-doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    justify-items: center;
+    margin-top: 30px;
+}
+
+.no-doctors {
+    text-align: center;
+    font-size: 18px;
+    color: #787887;
+    margin-top: 50px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-consultation-container {
+        margin: 60px auto 20px auto;
+        padding: 0 15px;
+    }
+
+    .doctors-grid,
+    .all-doctors-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .results-header h2 {
+        font-size: 24px;
+    }
+
+    .default-view h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-consultation-container {
+        margin: 50px auto 15px auto;
+        padding: 0 10px;
+    }
+
+    .results-header h2 {
+        font-size: 20px;
+    }
+
+    .default-view h2 {
+        font-size: 20px;
+    }
+}
