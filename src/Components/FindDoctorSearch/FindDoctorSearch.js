@@ -27,13 +27,17 @@ const FindDoctorSearch = ({ onSearch }) => {
         'Dr. James Miller'
     ];
 
-    // Combine both specialties and doctor names for suggestions
     const allSuggestions = [...specialties, ...doctorNames];
 
     const handleSearchChange = (e) => {
         const text = e.target.value;
         setSearchText(text);
         setShowSuggestions(text.length > 0);
+        
+        // AUTO-SEARCH: Trigger search immediately when typing
+        if (onSearch) {
+            onSearch(text);
+        }
     };
 
     const handleSuggestionClick = (suggestion) => {
@@ -62,6 +66,17 @@ const FindDoctorSearch = ({ onSearch }) => {
         setTimeout(() => setShowSuggestions(false), 200);
     };
 
+    // Clear search when input becomes empty
+    const handleInputChange = (e) => {
+        const text = e.target.value;
+        setSearchText(text);
+        setShowSuggestions(text.length > 0);
+        
+        if (onSearch) {
+            onSearch(text); // This will trigger search with empty text when cleared
+        }
+    };
+
     const filteredSuggestions = allSuggestions.filter(item =>
         item.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -75,7 +90,7 @@ const FindDoctorSearch = ({ onSearch }) => {
                         className="search-input"
                         placeholder="Search by doctor name or specialty..."
                         value={searchText}
-                        onChange={handleSearchChange}
+                        onChange={handleInputChange} // Use the new handler
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
                     />
