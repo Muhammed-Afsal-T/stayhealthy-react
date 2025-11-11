@@ -1,0 +1,110 @@
+.doctor-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Changed from 20px auto to 0 */
+    padding: 20px;
+    max-width: 350px; /* Slightly smaller for row layout */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.doctor-card-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px; 
+  object-fit: cover;
+  border: 3px solid #2190FF;
+  background-color: #f5f5f5;
+}
+
+.doctor-card-details-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.doctor-card-details {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.doctor-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.doctor-specialty {
+  font-size: 1.1em;
+  color: #2190FF;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.doctor-experience {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0 0 5px 0;
+}
+
+.doctor-rating {
+  margin: 8px 0;
+}
+
+.rating-stars {
+  font-size: 0.9em;
+  color: #ffa500;
+  font-weight: bold;
+}
+
+.doctor-profile {
+  font-size: 0.9em;
+  color: #777;
+  line-height: 1.4;
+  margin: 8px 0 0 0;
+}
+
+.book-appointment-btn {
+  background: linear-gradient(45deg, #2190FF, #1976d2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-appointment-btn:hover {
+  background: linear-gradient(45deg, #1976d2, #1565c0);
+  transform: scale(1.02);
+}
+
+.book-appointment-btn div:first-child {
+  font-size: 1.1em;
+  margin-bottom: 4px;
+}
+
+.book-appointment-btn div:last-child {
+  font-size: 0.8em;
+  opacity: 0.9;
+}
