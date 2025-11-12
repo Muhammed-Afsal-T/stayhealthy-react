@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './DoctorCard.css';
@@ -7,16 +7,60 @@ import { v4 as uuidv4 } from 'uuid';
 
 const DoctorCard = ({ name, specialty, experience, rating, image, profile }) => {
   const [showModal, setShowModal] = useState(false);
-  const [appointments, setAppointments] = useState([]);
+  const [hasAppointment, setHasAppointment] = useState(false);
+  const [currentAppointment, setCurrentAppointment] = useState(null);
+
+  // Check if this doctor has an appointment when component loads
+  useEffect(() => {
+    checkForAppointment();
+    
+    // Listen for appointment changes
+    const handleAppointmentChange = () => {
+      checkForAppointment();
+    };
+
+    window.addEventListener('appointmentChange', handleAppointmentChange);
+    
+    return () => {
+      window.removeEventListener('appointmentChange', handleAppointmentChange);
+    };
+  }, [name]);
+
+  const checkForAppointment = () => {
+    const appointmentKey = `appointment_${name}`;
+    const storedAppointment = localStorage.getItem(appointmentKey);
+    
+    if (storedAppointment) {
+      try {
+        const data = JSON.parse(storedAppointment);
+        if (data.appointmentData) {
+          setHasAppointment(true);
+          setCurrentAppointment(data.appointmentData);
+          return;
+        }
+      } catch (error) {
+        console.log('Error parsing appointment data:', error);
+      }
+    }
+    
+    setHasAppointment(false);
+    setCurrentAppointment(null);
+  };
 
   const handleBooking = () => {
     setShowModal(true);
   };
 
   const handleCancel = (appointmentId) => {
-    // Remove the appointment from state
-    const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
-    setAppointments(updatedAppointments);
+    // Remove appointment data from localStorage
+    localStorage.removeItem(`appointment_${name}`);
+    
+    // Update state
+    setHasAppointment(false);
+    setCurrentAppointment(null);
+    
+    // Trigger notification update
+    window.dispatchEvent(new Event('appointmentChange'));
     
     // Close the popup
     setShowModal(false);
@@ -27,8 +71,22 @@ const DoctorCard = ({ name, specialty, experience, rating, image, profile }) => 
       id: uuidv4(),
       ...appointmentData,
     };
-    setAppointments([newAppointment]); // Replace with new appointment
-    setShowModal(false); // Close modal after booking
+    
+    // Store appointment data for notification
+    localStorage.setItem(`appointment_${appointmentData.doctorName}`, JSON.stringify({
+      appointmentData: newAppointment,
+      timestamp: new Date().toISOString()
+    }));
+    
+    // Update state
+    setHasAppointment(true);
+    setCurrentAppointment(newAppointment);
+    
+    // Close modal
+    setShowModal(false);
+    
+    // Trigger notification update
+    window.dispatchEvent(new Event('appointmentChange'));
   };
 
   const handleClosePopup = () => {
@@ -55,10 +113,10 @@ const DoctorCard = ({ name, specialty, experience, rating, image, profile }) => 
         {/* Book/Cancel Appointment Button */}
         <div className="doctor-card-options-container">
           <button 
-            className={`book-appointment-btn ${appointments.length > 0 ? 'cancel-appointment' : ''}`}
+            className={`book-appointment-btn ${hasAppointment ? 'cancel-appointment' : ''}`}
             onClick={handleBooking}
           >
-            {appointments.length > 0 ? (
+            {hasAppointment ? (
               <div>Cancel Appointment</div>
             ) : (
               <div>Book Appointment</div>
@@ -93,25 +151,25 @@ const DoctorCard = ({ name, specialty, experience, rating, image, profile }) => 
             </div>
 
             {/* Show booked appointments OR booking form */}
-            {appointments.length > 0 ? (
+            {hasAppointment ? (
               <div className="appointment-booked-section">
                 <h3 style={{ textAlign: 'center', margin: '20px 0', color: '#4caf50' }}>
                   ✅ Appointment Booked!
                 </h3>
-                {appointments.map((appointment) => (
-                  <div className="booked-info" key={appointment.id}>
-                    <p><strong>Name:</strong> {appointment.name}</p>
-                    <p><strong>Phone:</strong> {appointment.phoneNumber}</p>
-                    <p><strong>Date:</strong> {appointment.date}</p>
-                    <p><strong>Time:</strong> {appointment.timeSlot}</p>
+                {currentAppointment && (
+                  <div className="booked-info">
+                    <p><strong>Name:</strong> {currentAppointment.name}</p>
+                    <p><strong>Phone:</strong> {currentAppointment.phoneNumber}</p>
+                    <p><strong>Date:</strong> {currentAppointment.date}</p>
+                    <p><strong>Time:</strong> {currentAppointment.timeSlot}</p>
                     <button 
                       className="cancel-btn"
-                      onClick={() => handleCancel(appointment.id)}
+                      onClick={() => handleCancel(currentAppointment.id)}
                     >
                       Cancel Appointment
                     </button>
                   </div>
-                ))}
+                )}
               </div>
             ) : (
               <AppointmentForm 
