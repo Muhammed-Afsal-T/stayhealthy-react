@@ -9,12 +9,12 @@ import InstantConsultation from './Components/InstantConsultationBooking/Instant
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import Notification from './Components/Notification/Notification';
+import ReviewForm from './Components/ReviewForm/ReviewForm';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        
         <Notification>
           <Navbar/>
           <Routes>
@@ -23,11 +23,8 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/instant-consultation" element={<InstantConsultation/>}/>
             <Route path="/booking-consultation" element={<BookingConsultation/>}/>
-            
-
             <Route path="/test-search" element={<FindDoctorSearch/>}/>
-            
-            
+            <Route path="/reviewform" element={<ReviewForm/>}/>
           </Routes>
         </Notification>
       </BrowserRouter>

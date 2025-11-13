@@ -1,0 +1,342 @@
+/* Reviews Page Layout */
+.reviews-page-container {
+    margin-top: 80px;
+    padding: 20px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reviews-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+/* Table Styles */
+.reviews-table-header {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 150px 150px;
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px 8px 0 0;
+    color: #333;
+}
+
+.review-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 150px 150px;
+    gap: 15px;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.row-even {
+    background-color: white;
+}
+
+.row-odd {
+    background-color: #fafafa;
+}
+
+.table-separator {
+    border-bottom: 2px dotted #ccc;
+    margin: 10px 0;
+}
+
+.review-status {
+    color: #666;
+    font-style: italic;
+}
+
+/* Review Button Styles */
+.review-button {
+    background: #2190FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-button:hover {
+    background: #1976d2;
+}
+
+.review-given {
+    color: #4caf50;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Modal Styles */
+.review-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.review-modal {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.review-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px 15px 25px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.review-modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-button:hover {
+    color: #333;
+    background: #f5f5f5;
+}
+
+.doctor-info {
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.doctor-info h4 {
+    margin: 0 0 5px 0;
+    color: #2190FF;
+    font-size: 1.2em;
+}
+
+.doctor-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.review-form {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* NEW: Name Input Field Styles */
+.name-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: #2190FF;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 2em;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.star.filled {
+    color: #ffc107;
+}
+
+.star:hover {
+    color: #ffc107;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2190FF;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+.submit-btn {
+    background: #2190FF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #1976d2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reviews-page-container {
+        padding: 10px;
+        margin-top: 60px;
+    }
+    
+    .reviews-table-header,
+    .review-row {
+        grid-template-columns: 60px 1fr 1fr 120px 120px;
+        gap: 10px;
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    
+    .reviews-title {
+        font-size: 1.5em;
+    }
+    
+    .review-modal {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .review-modal-header {
+        padding: 15px 20px 10px 20px;
+    }
+    
+    .review-form {
+        padding: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .star {
+        font-size: 1.5em;
+    }
+    
+    /* Responsive name input */
+    .name-input {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviews-table-header,
+    .review-row {
+        grid-template-columns: 50px 1fr 1fr 100px 100px;
+        gap: 8px;
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+    
+    .review-button {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    /* Mobile name input */
+    .name-input {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
