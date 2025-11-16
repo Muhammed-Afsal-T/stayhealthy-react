@@ -14,6 +14,30 @@ const Login = () => {
     }
   }, []);
 
+  // Function to fetch user profile after login
+  const fetchUserProfile = async (authtoken, userEmail) => {
+    try {
+      const response = await fetch(`${API_URL}/api/auth/user`, {
+        headers: {
+          "Authorization": `Bearer ${authtoken}`,
+          "Email": userEmail,
+        },
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        // Store user details in sessionStorage
+        sessionStorage.setItem("name", userData.name);
+        sessionStorage.setItem("phone", userData.phone);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Profile fetch error:', error);
+      return false;
+    }
+  };
+
   const login = async (e) => {
     e.preventDefault();
     
@@ -30,10 +54,19 @@ const Login = () => {
       });
 
       const json = await res.json();
+      console.log('Login response:', json); // Debug: see what API returns
       
       if (json.authtoken) {
         sessionStorage.setItem('auth-token', json.authtoken);
         sessionStorage.setItem('email', email);
+        
+        // Fetch user profile to get name and other details
+        const profileFetched = await fetchUserProfile(json.authtoken, email);
+        
+        if (!profileFetched) {
+          console.log('Could not fetch user profile, using email as fallback');
+        }
+        
         navigate('/');
         window.location.reload();
       } else {

@@ -1,0 +1,96 @@
+/* Profile Card Container */
+.profile-card-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.username-dropdown {
+    color: #2190FF;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 16px; /* Increased padding for better spacing */
+    border-radius: 6px; /* Slightly larger border radius */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    white-space: nowrap; /* Keep text in one line */
+    border: 1px solid transparent; /* Prepare for hover effect */
+}
+
+.username-dropdown:hover {
+    background-color: #f0f8ff;
+    border-color: #2190FF; /* Add border on hover */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px; /* Slightly larger border radius */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Enhanced shadow */
+    min-width: 200px; /* Increased width for better spacing */
+    z-index: 1000;
+    margin-top: 8px; /* Increased margin for better spacing */
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 14px 20px; /* Increased padding for better spacing */
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease; /* Smooth transition */
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #2190FF;
+    padding-left: 25px; /* Slight indent on hover for better effect */
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* Logout Button */
+.btn2 {
+    border: 2px solid #3685fb;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    height: 36px; /* Slightly increased height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 18px; /* Increased padding */
+    white-space: nowrap; /* Keep button text in one line */
+    transition: all 0.3s ease; /* Smooth transition */
+    font-weight: 500;
+}
+
+.btn2:hover {
+    background-color: #3685fb;
+    color: white;
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: 0 2px 8px rgba(54, 133, 251, 0.3); /* Shadow on hover */
+}
