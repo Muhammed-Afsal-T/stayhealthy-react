@@ -1,0 +1,231 @@
+.reports-page-container {
+    margin-top: 80px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reports-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reports-header h1 {
+    color: #000000;
+    font-size: 2.5em;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.reports-header p {
+    color: #666;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.reports-table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Table Header */
+.reports-table-header {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 150px 150px;
+    gap: 1px;
+    background-color: #e0e0e0;
+    color: #000000;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.header-cell {
+    padding: 20px 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #ccc;
+}
+
+.header-cell:last-child {
+    border-right: none;
+}
+
+/* Table Body */
+.reports-table-body {
+    background: white;
+}
+
+.report-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 150px 150px;
+    gap: 1px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.report-row:hover {
+    background-color: #f8f9fa;
+}
+
+.report-row:last-child {
+    border-bottom: none;
+}
+
+.cell {
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    border-right: 1px solid #f0f0f0;
+}
+
+.cell:last-child {
+    border-right: none;
+}
+
+/* Action Buttons */
+.view-btn, .download-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #2190FF;
+    color: white;
+    line-height: 1.2;
+}
+
+.view-btn:hover, .download-btn:hover {
+    background: #1067be;
+    transform: translateY(-1px);
+}
+
+.download-btn {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* No Reports Message */
+.no-reports-message {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.no-reports-message p {
+    color: #666;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.no-reports-message p:first-child {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .reports-table-header,
+    .report-row {
+        grid-template-columns: 100px 1fr 1fr 120px 120px;
+    }
+    
+    .header-cell,
+    .cell {
+        padding: 15px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .reports-page-container {
+        padding: 20px 15px;
+        margin-top: 60px;
+    }
+    
+    .reports-header h1 {
+        font-size: 2em;
+    }
+    
+    .reports-table-header {
+        display: none;
+    }
+    
+    .report-row {
+        display: block;
+        padding: 20px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+    }
+    
+    .cell {
+        padding: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: left;
+        border-right: none;
+    }
+    
+    .cell:last-child {
+        border-bottom: none;
+        padding-top: 15px;
+    }
+    
+    .cell::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .serial-number::before { content: "Serial Number: "; }
+    .doctor-name::before { content: "Doctor Name: "; }
+    .doctor-speciality::before { content: "Speciality: "; }
+    .view-report::before { content: "View Report: "; }
+    .download-report::before { content: "Download Report: "; }
+    
+    .view-report, .download-report {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .view-btn, .download-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reports-page-container {
+        padding: 15px 10px;
+    }
+    
+    .reports-header h1 {
+        font-size: 1.8em;
+    }
+    
+    .view-report, .download-report {
+        gap: 8px;
+    }
+    
+    .view-btn, .download-btn {
+        max-width: none;
+        width: 100%;
+    }
+}
