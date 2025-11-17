@@ -1,7 +1,23 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 
 const Landing_Page = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    // Check if user is logged in (has auth-token in sessionStorage)
+    const isLoggedIn = sessionStorage.getItem("auth-token");
+    
+    if (isLoggedIn) {
+      // User is logged in - navigate to Appointments
+      navigate("/booking-consultation");
+    } else {
+      // User is not logged in - navigate to Signup
+      navigate("/signup");
+    }
+  };
+
   return (
     <section className="hero-section">
       <div>
@@ -21,9 +37,9 @@ const Landing_Page = () => {
           <h4>
             "Breathe deeply, live fully Fuel your body with care. Stay active, stay inspired.Health is a way of life."
           </h4>
-          <a href="#services">
-            <button className="button">Get Started</button>
-          </a>
+          <button className="button" onClick={handleGetStarted}>
+            Get Started
+          </button>
         </div>
       </div>
     </section>

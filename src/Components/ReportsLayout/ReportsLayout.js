@@ -2,7 +2,6 @@ import React from 'react';
 import './ReportsLayout.css';
 
 const ReportsLayout = () => {
-    // Sample reports data
     const reports = [
         {
             id: 1,
