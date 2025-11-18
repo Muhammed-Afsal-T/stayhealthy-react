@@ -38,7 +38,6 @@ const Login = () => {
     }
   };
 
-  // FIX: Reset form function
   const handleReset = () => {
     setEmail('');
     setPassword('');

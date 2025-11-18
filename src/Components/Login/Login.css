@@ -1,66 +1,59 @@
 .container {
-    max-width: 900px; /* Maximum width of the container */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 40px; /* Padding inside the container */
-    margin-top: 10%; /* Top margin of 10% */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: 10%;
 }
 
-/* Styles for form groups */
 .form-group {
-    margin-bottom: 20px; /* Bottom margin for spacing between form groups */
+    margin-bottom: 20px;
 }
 
-/* Styles for form group labels */
 .form-group label {
-    display: block; /* Make labels display as block elements */
-    margin-bottom: 5px; /* Bottom margin for spacing below labels */
-    font-weight: bold; /* Bold text for labels */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-/* Styles for form controls */
 .form-control {
-    width: 100%; /* Width of form controls */
-    padding: 8px; /* Padding inside form controls */
-    font-size: 16px; /* Font size of form controls */
-    border: 1px solid #ccc; /* Border around form controls */
-    border-radius: 4px; /* Border radius for rounded corners */
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* Styles for button groups */
 .btn-group {
-    margin-top: .0001px; /* Top margin for spacing above button groups */
-    margin-bottom: 20px; /* Bottom margin for spacing below button groups */
+    margin-top: .0001px;
+    margin-bottom: 20px;
 }
 
-/* Styles for buttons */
 .btn {
-    padding: 10px 20px; /* Padding inside buttons */
-    font-size: 16px; /* Font size of buttons */
-    border: none; /* No border for buttons */
-    border-radius: 4px; /* Border radius for rounded corners on buttons */
-    cursor: pointer; /* Cursor style on hover for buttons */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-/* Styles for primary buttons */
 .btn-primary {
-    background-color: #007bff; /* Background color for primary buttons */
-    color: #fff; /* Text color for primary buttons */
+    background-color: #007bff;
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background-color: #0369d6; /* Darker red on hover */
-    transform: translateY(-1px); /* Slight lift effect */
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3); /* Shadow on hover */
+    background-color: #0369d6;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
-/* Styles for danger (red) buttons */
 .btn-danger {
-    background-color: #dc3545; /* Background color for danger buttons */
-    color: #fff; /* Text color for danger buttons */
+    background-color: #dc3545;
+    color: #fff;
 }
 
 .btn-danger:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: translateY(-1px); /* Slight lift effect */
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3); /* Shadow on hover */
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
