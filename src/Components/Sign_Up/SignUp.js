@@ -47,13 +47,20 @@ const Sign_Up = () => {
         }
     };
 
+    const handleReset = () => {
+        setName('');
+        setPhone('');
+        setEmail('');
+        setPassword('');
+        setShowerr('');
+    };
     return (
         <div className="container" style={{marginTop:'5%'}}>
             <div className="signup-grid">
                 <div className="signup-text">
                     <h1>Sign Up</h1>
                 </div>
-                <div className="signup-text1" style={{textAlign: 'left'}}>
+                <div className="signup-text1" style={{textAlign: 'center'}}>
                     Already a member? <span><Link to="/login" style={{color: '#2190FF'}}> Login</Link></span>
                 </div>
                 <div className="signup-form">
@@ -118,8 +125,7 @@ const Sign_Up = () => {
 
                         <div className="btn-group">
                             <button type="submit" className="btn btn-primary mb-2 mr-1">Submit</button>
-                            <button type="reset" className="btn btn-danger mb-2">Reset</button>
-                        </div>
+                            <button type="button" onClick={handleReset} className="btn btn-danger mb-2">Reset</button>                        </div>
                     </form>
                 </div>
             </div>

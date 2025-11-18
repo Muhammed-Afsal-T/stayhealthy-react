@@ -19,7 +19,7 @@
 
 /* Styles for form controls */
 .form-control {
-    width: 40%; /* Width of form controls */
+    width: 100%; /* Width of form controls */
     padding: 8px; /* Padding inside form controls */
     font-size: 16px; /* Font size of form controls */
     border: 1px solid #ccc; /* Border around form controls */
@@ -47,8 +47,20 @@
     color: #fff; /* Text color for primary buttons */
 }
 
+.btn-primary:hover {
+    background-color: #0369d6; /* Darker red on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3); /* Shadow on hover */
+}
+
 /* Styles for danger (red) buttons */
 .btn-danger {
     background-color: #dc3545; /* Background color for danger buttons */
     color: #fff; /* Text color for danger buttons */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3); /* Shadow on hover */
 }

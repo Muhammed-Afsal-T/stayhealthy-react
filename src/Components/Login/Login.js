@@ -38,6 +38,12 @@ const Login = () => {
     }
   };
 
+  // FIX: Reset form function
+  const handleReset = () => {
+    setEmail('');
+    setPassword('');
+  };
+
   const login = async (e) => {
     e.preventDefault();
     
@@ -54,13 +60,12 @@ const Login = () => {
       });
 
       const json = await res.json();
-      console.log('Login response:', json); // Debug: see what API returns
+      console.log('Login response:', json);
       
       if (json.authtoken) {
         sessionStorage.setItem('auth-token', json.authtoken);
         sessionStorage.setItem('email', email);
         
-        // Fetch user profile to get name and other details
         const profileFetched = await fetchUserProfile(json.authtoken, email);
         
         if (!profileFetched) {
@@ -135,7 +140,7 @@ const Login = () => {
               <button type="submit" className="btn btn-primary mb-2 mr-1">
                 Login
               </button>
-              <button type="reset" className="btn btn-danger mb-2">
+              <button type="button" className="btn btn-danger mb-2" onClick={handleReset}>
                 Reset
               </button>
             </div>
