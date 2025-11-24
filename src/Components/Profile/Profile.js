@@ -82,6 +82,7 @@ const Profile = () => {
     };
 
     return (
+      <div className="mobile-content-spacing"> 
         <div className="profile-page-container">
             <div className="profile-header">
                 <h1>Your Profile</h1>
@@ -165,6 +166,7 @@ const Profile = () => {
                 )}
             </div>
         </div>
+    </div>
     );
 };
 

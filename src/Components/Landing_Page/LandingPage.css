@@ -2,35 +2,44 @@
     margin: 0;
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
 }
+
 .hero-section {
     height: 100vh;
     padding-top: 15rem;
     background-color: transparent;
     z-index: -1;
+    overflow-x: hidden;
 }
+
 .hero-section .flex-hero {
     flex-direction: column;
     gap: 30px;
-    text-align:center;
+    text-align: center;
+    padding: 0 1rem; 
 }
 
 .hero-section .flex-hero h1 {
     font-size: 65px;
     font-weight: 900;
 }
+
 .text-gradient {
     background: linear-gradient(45deg,#2190FF 2.34%,#b673f8 100.78%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .hero-section h4 {
     font-size: 22px;
     font-weight: 300;
     text-align: center;
-    padding: 12px 14rem;
-    color:#969BA5;
+    padding: 12px 2rem; 
+    color: #969BA5;
+    max-width: 800px;
+    margin: 0 auto; 
 }
 
 .hero-section .button {
@@ -39,8 +48,10 @@
     background-color: #2190FF;
     color: #fff;
     border: 1px solid transparent;
-    width: 15%;
-    margin-top:15px;
+    width: auto; 
+    min-width: 200px;
+    margin-top: 15px;
+    display: inline-block; 
 }
 
 .hero-section div:nth-child(2) {
@@ -54,9 +65,6 @@
     gap: 0px;
 }
 
-
-
-
 ul {
     list-style: none;
 }
@@ -66,13 +74,10 @@ a {
     color: #333;
 }
 
-h1,
-h2 {
+h1, h2 {
     line-height: 1.3;
     margin: 15px 0;
 }
-
-
 
 button {
     transition: all 0.5s ease-in-out;
@@ -83,68 +88,94 @@ button {
     margin-top: 10px;
 }
 
-
 .button:hover {
     transform: scale(0.98);
 }
 
-
-@media screen and (max-width:980px) {
+@media screen and (max-width: 980px) {
     .hero-section h1 {
         text-align: center;
+        font-size: 50px; 
     }
+    
     .hero-section {
         padding-top: 12rem;
     }
+    
     .hero-section h4 {
-        font-size: 21px;
+        font-size: 20px;
         text-align: center;
-        padding: 0px 4rem;
+        padding: 0 3rem;
     }
+    
     .image {
         width: 500px;
     }
-    .hero-section .button{
-        margin-top:15px;
-        width: 45%;
-    }
     
+    .hero-section .button {
+        margin-top: 15px;
+        width: auto; 
+        min-width: 180px;
+    }
 }
 
-@media screen and (max-width:400px) {
-    .hero-section h1 {
-        font-size: 35px;
-    }
-
+@media screen and (max-width: 768px) {
     .hero-section {
         padding-top: 10rem;
     }
-    .hero-section h4 {
-        font-size: 16px;
-        padding: 0px 2rem;
+    
+    .hero-section .flex-hero h1 {
+        font-size: 40px; 
+        padding: 0 1rem;
     }
-
+    
+    .hero-section h4 {
+        font-size: 18px;
+        padding: 0 1.5rem;
+    }
+    
+    .hero-section .button {
+        min-width: 160px;
+        padding: 0.8rem 1.5rem;
+    }
 }
 
+@media screen and (max-width: 480px) {
+    .hero-section .flex-hero h1 {
+        font-size: 32px;
+    }
 
+    .hero-section {
+        padding-top: 8rem;
+    }
+    
+    .hero-section h4 {
+        font-size: 16px;
+        padding: 0 1rem;
+    }
+    
+    .hero-section .button {
+        min-width: 140px;
+        padding: 0.7rem 1.2rem;
+        font-size: 14px;
+    }
+    
+    .blue, .blue1 {
+        height: 100px;
+        width: 150px;
+    }
+}
 
-button,
-a,
-li {
+button, a, li {
     cursor: pointer;
 }
 
-/* Blob */
-
-
-/* Blobs */
 .flex-hero .blob-cont {
     justify-content: center;
     align-items: center;
     position: static;
     margin: 10px;
 }
-
 
 .blob {
     border-radius: 100px;
@@ -154,7 +185,7 @@ li {
 .blue {
     background-color: #2937a392;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     right: 55%;
     bottom: 25%;
@@ -163,10 +194,11 @@ li {
     width: 200px;
     animation: blobani 8s infinite ease;
 }
+
 .blue1 {
     background-color: #2937a392;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     right: -55%;
     bottom: -25%;
@@ -175,12 +207,15 @@ li {
     width: 200px;
     animation: blobani 8s infinite ease;
 }
-  
-  
-  @keyframes blobani {
-    0% {top: 0; left: 0; transform: scale(1);}
-    30% {top: 0; left: 0; transform: scale(1.2);}
-    60% {top: 0; left: 0; transform: scale(1.3);}
-    100% {top: 0; left: 0; transform: scale(1);}
-  }
-  
+
+@keyframes blobani {
+    0% { top: 0; left: 0; transform: scale(1); }
+    30% { top: 0; left: 0; transform: scale(1.2); }
+    60% { top: 0; left: 0; transform: scale(1.3); }
+    100% { top: 0; left: 0; transform: scale(1); }
+}
+@media screen and (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px;
+    }
+}

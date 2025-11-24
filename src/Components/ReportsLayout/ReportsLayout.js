@@ -43,6 +43,7 @@ const ReportsLayout = () => {
     };
 
     return (
+    <div className="mobile-content-spacing"> 
         <div className="reports-page-container">
             <div className="reports-header">
                 <h1>Medical Reports</h1>
@@ -99,6 +100,7 @@ const ReportsLayout = () => {
                 </div>
             )}
         </div>
+    </div>
     );
 };
 

@@ -30,6 +30,7 @@ const HealthBlog = () => {
     ];
 
     return (
+        <div className="mobile-content-spacing">
         <div className="health-blog-container">
             <div className="blog-header">
                 <h1>Health Blog</h1>
@@ -58,6 +59,7 @@ const HealthBlog = () => {
                 </ul>
             </div>
         </div>
+    </div> 
     );
 };
 

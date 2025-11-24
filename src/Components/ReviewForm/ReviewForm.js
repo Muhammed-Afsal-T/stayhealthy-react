@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ReviewForm.css';
 
-// Individual Review Row Component - MOVED TO TOP
 const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, isEven }) => {
     const [showForm, setShowForm] = useState(false);
     const [rating, setRating] = useState(0);
@@ -24,7 +23,7 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
     const handleCloseForm = () => {
         setShowForm(false);
         setRating(0);
-        setPatientName(''); // NEW: Reset name
+        setPatientName(''); 
         setReview('');
     };
 
@@ -34,7 +33,7 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
         const reviewData = {
             doctorName,
             doctorSpeciality,
-            patientName, // NEW: Include patient name
+            patientName, 
             rating,
             review,
             appointmentId,
@@ -64,7 +63,7 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
                 {isSubmitted ? 'Review Given' : 'No review yet'}
             </div>
             
-            {/* Review Form Modal */}
+
             {showForm && (
                 <div className="review-modal-overlay">
                     <div className="review-modal">
@@ -79,7 +78,7 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
                         </div>
                         
                         <form onSubmit={handleSubmit} className="review-form">
-                            {/* NEW: Patient Name Input Field */}
+                            
                             <div className="form-group">
                                 <label htmlFor="patientName">Your Name:</label>
                                 <input
@@ -136,7 +135,7 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
     );
 };
 
-// Main Reviews Page Component - MOVED TO BOTTOM
+
 const ReviewForm = () => {
     const doctors = [
         {
@@ -160,6 +159,7 @@ const ReviewForm = () => {
     ];
 
     return (
+    <div className="mobile-content-spacing"> 
         <div className="reviews-page-container">
             <h2 className="reviews-title">Reviews</h2>
             
@@ -187,9 +187,10 @@ const ReviewForm = () => {
                 />
             ))}
 
-            {/* Separator Line */}
+            
             <div className="table-separator"></div>
         </div>
+    </div>
     );
 };
 
