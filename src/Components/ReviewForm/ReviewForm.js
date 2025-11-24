@@ -8,9 +8,12 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
     const [review, setReview] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    // Check if review already exists
+    // Check if review already exists - UPDATED FOR USER-SPECIFIC
     useEffect(() => {
-        const storedReview = localStorage.getItem(`review_${appointmentId}`);
+        // Get current user ID from sessionStorage or use 'anonymous' if not logged in
+        const userEmail = sessionStorage.getItem('email') || 'anonymous';
+        const storedReview = localStorage.getItem(`review_${appointmentId}_${userEmail}`);
+        
         if (storedReview) {
             setIsSubmitted(true);
         }
@@ -30,6 +33,9 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        // Get current user ID - UPDATED FOR USER-SPECIFIC
+        const userEmail = sessionStorage.getItem('email') || 'anonymous';
+        
         const reviewData = {
             doctorName,
             doctorSpeciality,
@@ -37,10 +43,12 @@ const ReviewRow = ({ serialNumber, doctorName, doctorSpeciality, appointmentId, 
             rating,
             review,
             appointmentId,
+            userEmail, // NEW: Store user email to make it user-specific
             date: new Date().toISOString()
         };
         
-        localStorage.setItem(`review_${appointmentId}`, JSON.stringify(reviewData));
+        // Store with user-specific key - UPDATED
+        localStorage.setItem(`review_${appointmentId}_${userEmail}`, JSON.stringify(reviewData));
         setIsSubmitted(true);
         setShowForm(false);
     };
